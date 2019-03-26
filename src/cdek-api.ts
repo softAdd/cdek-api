@@ -77,6 +77,20 @@ export default class CdekApi {
       }
     })
   }
+  
+  DeliveryRequest(Order: any, nmbr: number, odCount: number) {
+  const date = new Date().toISOString()
+  return this.post('/status_report_h.php', {
+    DeliveryRequest: {
+      _Account: this.account,
+      _Secure: this.getSecure(date),
+      _Date: date,
+      _Number: nmbr,
+      _OrderCount: odCount,
+      Order
+    }
+  })
+}
 
   async getPPList() {
     return this.parseXmlResponse(await this.instance.get('/pvzlist/v1/xml'))
