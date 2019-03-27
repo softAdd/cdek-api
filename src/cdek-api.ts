@@ -78,14 +78,14 @@ export default class CdekApi {
     })
   }
   
-  deliveryRequest(Order: any, nmbr: number, odCount: number) {
+  deliveryRequest(Order: any, orderNumber: number, odCount: number) {
   const date = new Date().toISOString()
-  return this.post('/status_report_h.php', {
+  return this.post('/new_orders.php', {
     DeliveryRequest: {
       _Account: this.account,
       _Secure: this.getSecure(date),
       _Date: date,
-      _Number: nmbr,
+      _Number: orderNumber,
       _OrderCount: odCount,
       Order
     }
